@@ -1,0 +1,20 @@
+[
+  {
+    "number": "01",
+    "title": "Navigation & mapping",
+    "tag": "LOCALIZATION · SLAM · PERCEPTION",
+    "description": "Understanding where a robot is and what surrounds it, even when measurements are uncertain and GPS is unavailable."
+  },
+  {
+    "number": "02",
+    "title": "Marine & environmental robotics",
+    "tag": "OCEANS · FIELD ROBOTICS · CLIMATE",
+    "description": "Developing robotic systems to explore marine environments and collect the observations needed to better understand our changing planet."
+  },
+  {
+    "number": "03",
+    "title": "Autonomy in the wild",
+    "tag": "PLANNING · INFERENCE · EXPLORATION",
+    "description": "Connecting reliable perception with intelligent decisions so robots can explore and monitor challenging natural environments."
+  }
+]

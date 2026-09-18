@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Tim Kogucki",
+    "destination": "Field AI",
+    "url": "https://www.linkedin.com/in/timothy-kogucki/",
+    "id": "tim-kogucki",
+    "topics": ["topic-2"],
+    "fullBio": "Temporary biography for Tim Kogucki. This sample text previews the layout; a full biography will be added here.",
+    "researches": [
+      {
+        "title": "Sample research project",
+        "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
+      }
+    ]
+  }
+]
