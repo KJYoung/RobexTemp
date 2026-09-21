@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Markdown from "react-markdown";
-import { PeopleDirectory, PersonProfile, allPeople } from "./components/People";
+import { PeopleDirectory, PersonProfile } from "./components/People";
+import { usePeople } from "./hooks/usePeople";
 import research from "./content/research.json";
 import news from "./content/news.json";
 import publicationData from "./content/publications.json";
@@ -46,6 +47,7 @@ function Logo() {
   );
 }
 function App() {
+  const { allPeople, topics } = usePeople();
   const [page, setPage] = useState<Page>(getPage);
   const [menu, setMenu] = useState(false);
   const [profileId, setProfileId] = useState(() =>
@@ -68,7 +70,7 @@ function App() {
   }, []);
   useEffect(() => {
     document.title = `${profileId ? (allPeople.find((p) => p.id === profileId)?.name ?? "Profile not found") : page === "Home" ? "Robotic Exploration Lab" : page} | Robex · University of Michigan`;
-  }, [page, profileId]);
+  }, [page, profileId, allPeople]);
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMenu(false);
@@ -246,9 +248,15 @@ function App() {
         )}
         {page === "People" &&
           (profileId ? (
-            <PersonProfile id={profileId} />
+            <PersonProfile
+              id={profileId}
+              allPeople={allPeople}
+              topics={topics}
+            />
           ) : (
             <PeopleDirectory
+              allPeople={allPeople}
+              topics={topics}
               selectedTopic={selectedTopic}
               onTopicChange={setSelectedTopic}
             />

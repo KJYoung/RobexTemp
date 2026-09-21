@@ -3,7 +3,7 @@
     "name": "Alan Papalia",
     "group": "Principal Investigator",
     "role": "Assistant Professor",
-    "email": "1",
+    "email": "apapalia (at) umich (dot) edu",
     "url": "https://alanpapalia.github.io/",
     "image": "people/alan-papalia.png",
     "note": "",
@@ -21,14 +21,12 @@
     "name": "Minghan Zhu",
     "group": "Research Scientists & Postdocs",
     "role": "Research Scientist",
-    "email": "2",
+    "email": "minghanz (at) umich (dot) edu",
     "url": "https://minghanz.github.io/",
     "image": "people/minghan-zhu.png",
     "note": "",
     "id": "minghan-zhu",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Minghan Zhu. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -41,15 +39,12 @@
     "name": "Laura Sopegno",
     "group": "Research Scientists & Postdocs",
     "role": "Postdoc",
-    "email": "3",
+    "email": "sopegno (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/laura-sopegno-phd-89767276/?locale=en",
     "image": "people/laura-sopegno.png",
     "note": "Co-advised with Prof. Maha Haji",
     "id": "laura-sopegno",
-    "topics": [
-      "topic-1",
-      "topic-2"
-    ],
+    "topics": ["topic-1", "topic-2"],
     "fullBio": "Temporary biography for Laura Sopegno. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -62,14 +57,12 @@
     "name": "Raymond Young",
     "group": "Research Scientists & Postdocs",
     "role": "Postdoc",
-    "email": "4",
+    "email": "rayyoung (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/-rayyoung-/",
     "image": "people/raymond-young.png",
     "note": "Co-advised with Prof. Brian Arbic",
     "id": "raymond-young",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Raymond Young. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -82,14 +75,12 @@
     "name": "Shayesteh Hafezi",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
-    "email": "5",
+    "email": "shafezi (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/shayesteh-hafezi-ba974b17b/",
     "image": "people/shayesteh-hafezi.png",
     "note": "",
     "id": "shayesteh-hafezi",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Shayesteh Hafezi. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -102,14 +93,12 @@
     "name": "Tim Lazouski",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
-    "email": "6",
+    "email": "tlazousk (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/tlazouski/",
     "image": "people/tim-lazouski.png",
     "note": "Co-advised with Prof. Maani Ghaffari",
     "id": "tim-lazouski",
-    "topics": [
-      "topic-1"
-    ],
+    "topics": ["topic-1"],
     "fullBio": "Temporary biography for Tim Lazouski. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -122,14 +111,12 @@
     "name": "Junyoung Kim",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
-    "email": "7",
+    "email": "jyoungk (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/kim-junyoung/",
     "image": "people/junyoung-kim.png",
     "note": "",
     "id": "junyoung-kim",
-    "topics": [
-      "topic-1"
-    ],
+    "topics": ["topic-1"],
     "fullBio": "Temporary biography for Junyoung Kim. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -142,14 +129,12 @@
     "name": "Cole Malinchock",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
-    "email": "8",
+    "email": "chmalinc (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/cole-malinchock/",
     "image": "people/cole-malinchock.png",
     "note": "",
     "id": "cole-malinchock",
-    "topics": [
-      "topic-1"
-    ],
+    "topics": ["topic-1"],
     "fullBio": "Temporary biography for Cole Malinchock. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -162,14 +147,12 @@
     "name": "Zhiyi Wang",
     "group": "MS Students",
     "role": "MS Student",
-    "email": "9",
+    "email": "jerrywzy (at) umich (dot) edu",
     "url": "https://scholar.google.com/citations?user=WaH0rCEAAAAJ&hl=en",
     "image": "people/zhiyi-wang.jpg",
     "note": "",
     "id": "zhiyi-wang",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Zhiyi Wang. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -182,15 +165,12 @@
     "name": "Devin Jones",
     "group": "MS Students",
     "role": "MS Student",
-    "email": "10",
+    "email": "jdevin (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/devin-jones-a05bb8290",
     "image": "people/devin-jones.png",
     "note": "",
     "id": "devin-jones",
-    "topics": [
-      "topic-1",
-      "topic-2"
-    ],
+    "topics": ["topic-1", "topic-2"],
     "fullBio": "Temporary biography for Devin Jones. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -203,14 +183,12 @@
     "name": "Cody Sheltraw",
     "group": "MS Students",
     "role": "MS Student",
-    "email": "11",
+    "email": "cshel (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/cody-sheltraw",
     "image": "people/cody-sheltraw.jpg",
     "note": "",
     "id": "cody-sheltraw",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Cody Sheltraw. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {
@@ -223,14 +201,12 @@
     "name": "Nik Sanderson",
     "group": "Undergraduates",
     "role": "Undergraduate Researcher",
-    "email": "12",
+    "email": "nikrsan (at) umich (dot) edu",
     "url": "https://www.linkedin.com/in/niksand/",
     "image": "people/nik-sanderson.png",
     "note": "",
     "id": "nik-sanderson",
-    "topics": [
-      "topic-2"
-    ],
+    "topics": ["topic-2"],
     "fullBio": "Temporary biography for Nik Sanderson. This sample text previews the layout; a full biography will be added here.",
     "researches": [
       {

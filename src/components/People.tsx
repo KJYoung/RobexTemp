@@ -1,37 +1,15 @@
 import Markdown from "react-markdown";
-import peopleData from "../content/people.json";
-import alumniData from "../content/alumni.json";
-import topicData from "../content/topics.json";
-
+import type { Person } from "../../scripts/people-sheet.mjs";
 export type Topic = { id: string; label: string };
-type Research = { title: string; description: string; url?: string };
-type Person = {
-  id: string;
-  name: string;
-  role: string;
-  group: string;
-  image?: string;
-  email?: string;
-  url: string;
-  note?: string;
-  destination?: string;
-  topics: string[];
-  fullBio: string;
-  researches: Research[];
-};
-export const topics: Topic[] = topicData;
-const currentPeople: Person[] = peopleData;
-const alumni: Person[] = alumniData.map((p) => ({
-  ...p,
-  role: "Alumni",
-  group: "Lab Alumni",
-}));
-export const allPeople = [...currentPeople, ...alumni];
 const profileUrl = (p: Person) => `#people/${p.id}`;
 function Portrait({ person }: { person: Person }) {
   return person.image ? (
     <img
-      src={import.meta.env.BASE_URL + person.image}
+      src={
+        /^https?:\/\//i.test(person.image)
+          ? person.image
+          : import.meta.env.BASE_URL + person.image
+      }
       alt={person.name}
       loading="lazy"
     />
@@ -47,7 +25,7 @@ function Portrait({ person }: { person: Person }) {
     </div>
   );
 }
-function TopicTags({ ids }: { ids: string[] }) {
+function TopicTags({ ids, topics }: { ids: string[]; topics: Topic[] }) {
   return (
     <div className="topic-tags">
       {topics
@@ -63,7 +41,11 @@ function TopicTags({ ids }: { ids: string[] }) {
 export function PeopleDirectory({
   selectedTopic,
   onTopicChange,
+  allPeople,
+  topics,
 }: {
+  allPeople: Person[];
+  topics: Topic[];
   selectedTopic: string;
   onTopicChange: (id: string) => void;
 }) {
@@ -154,7 +136,7 @@ export function PeopleDirectory({
                           </p>
                         )}
                         {group !== "Principal Investigator" && (
-                          <TopicTags ids={p.topics} />
+                          <TopicTags ids={p.topics} topics={topics} />
                         )}
                         {p.email && <span className="email">{p.email}</span>}
                         <a className="text-link" href={p.url}>
@@ -178,7 +160,15 @@ export function PeopleDirectory({
     </section>
   );
 }
-export function PersonProfile({ id }: { id: string }) {
+export function PersonProfile({
+  id,
+  allPeople,
+  topics,
+}: {
+  id: string;
+  allPeople: Person[];
+  topics: Topic[];
+}) {
   const person = allPeople.find((p) => p.id === id);
   if (!person)
     return (
@@ -211,7 +201,7 @@ export function PersonProfile({ id }: { id: string }) {
             <section className="profile-section">
               <h2>Topics</h2>
               <div className="profile-content">
-                <TopicTags ids={person.topics} />
+                <TopicTags ids={person.topics} topics={topics} />
               </div>
             </section>
           )}

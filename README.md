@@ -98,22 +98,24 @@ JSON 항목을 복사하여 추가하고 쉼표/따옴표를 유지하세요. �
 
 예정 주소: https://kjyoung.github.io/RobexTemp/
 
-## Google Sheets → People 동기화
+## Google Sheets → People 실시간 갱신
 
 원본: https://docs.google.com/spreadsheets/d/1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA/edit
 
+브라우저에서 `src/hooks/usePeople.ts`가 페이지를 열 때와 30초마다 공개 Sheet를 읽습니다. 탭이 숨겨져 있으면 주기 요청을 쉬고, 탭으로 돌아오거나 네트워크가 복구되면 다시 읽습니다. Google 측 캐시로 추가 지연이 생길 수 있으므로 즉시 push되는 방식은 아닙니다. Sheet 수정에 재배포나 새로고침은 필요하지 않습니다.
+
 `People` 탭의 첫 행은 필드명, 두 번째 행부터 한 사람씩 입력합니다. `name`으로 매칭하며 앞뒤 공백과 대소문자는 무시합니다. `id`는 이름 매칭 키가 아닌 개인 페이지 주소입니다.
 
-- 값이 있는 셀만 기존 `src/content/people.json`에 덮어씁니다. 빈 셀은 현재 JSON 값을 유지합니다.
-- 시트에서 빠진 구성원은 유지합니다. 새 이름은 오타로 잘못 연결하지 않도록 오류로 처리합니다. 새 구성원은 먼저 JSON에 추가하세요.
-- `topics`: 쉼표로 구분하거나 JSON 배열을 사용합니다. 새 태그는 `topics.json`에도 등록됩니다.
+- 최초 화면은 번들에 포함된 `src/content/people.json`을 사용합니다. Sheet의 값이 있는 셀만 화면 데이터에 덮어씁니다. 빈 셀은 현재 값을 유지합니다. 같은 페이지 세션에서 이전에 읽은 값도 유지되며, 새로 열면 JSON부터 다시 시작합니다.
+- 시트에서 빠진 구성원은 유지합니다. 새 이름은 오타로 잘못 연결하지 않도록 오류로 처리합니다. 새 구성원은 먼저 JSON에 추가하고 배포하세요.
+- `topics`: 쉼표로 구분하거나 JSON 배열을 사용합니다. 새 태그는 화면의 필터와 프로필에 자동으로 나타납니다.
 - `fullBio`: 여러 줄 문장과 Markdown을 지원합니다.
 - `res-1-title`, `res-1-desc`, `res-1-url`: 첫 번째 연구 항목의 제목·설명·링크입니다. 숫자를 늘려 추가할 수 있습니다. 빈 셀은 해당 항목의 기존 필드를 유지합니다.
 - `researches` 전체를 JSON 배열로 입력할 수도 있습니다.
-- 이메일의 @와 .는 저장 시 (at), (dot)으로 변환됩니다. 테스트 숫자도 비어 있지 않으면 반영됩니다.
+- 이메일의 @와 .는 표시 시 (at), (dot)으로 변환됩니다. 테스트 숫자도 비어 있지 않으면 반영됩니다.
 
-`npm run sync:people`로 즉시 동기화합니다. `npm run dev`와 `npm run build`도 시작 전에 자동 동기화합니다. 서버 실행 중 시트를 수정했다면 `npm run sync:people`을 다시 실행하세요. 네트워크 없이 기존 데이터만 쓰려면 `SKIP_PEOPLE_SYNC=1 npm run dev` 또는 `SKIP_PEOPLE_SYNC=1 npm run build`를 사용하세요.
+Sheet는 방문자의 브라우저에서 로그인 없이 읽을 수 있어야 합니다. 읽기·검증 실패 시 마지막 성공 데이터를 유지하며, 첫 요청이 실패하면 JSON으로 표시합니다. 다음 주기에 다시 시도합니다. 중복 이름 등 잘못된 Sheet는 일부만 적용하지 않고 전체 갱신을 거부합니다.
 
-GitHub Actions의 기존 Build 단계도 동일한 동기화를 실행합니다. 시트만 수정한 경우 Actions → Deploy RobEx to GitHub Pages → Run workflow로 재배포하세요. 자동 주기 실행은 설정하지 않았습니다.
+`npm run dev`와 `npm run build`는 Sheet 다운로드 없이 실행됩니다. localhost와 GitHub Pages 모두 브라우저에서 같은 방식으로 갱신됩니다. 브라우저는 저장소의 JSON 파일을 수정하지 않습니다.
 
-시트는 GitHub Actions에서 로그인 없이 읽을 수 있어야 합니다. 다운로드·검증 실패 시 기존 people.json을 보존하고 빌드를 중단하여 기존 배포를 유지합니다. 빈 셀은 Git의 최초 값으로 복원하는 기능이 아니라, 실행 시점의 JSON 값을 유지하는 의미입니다.
+JSON 자체에 최신 값을 저장하고 싶을 때만 `npm run sync:people`을 실행하세요. 이 명령은 기존처럼 people.json을 덮어쓰고 새 topics를 topics.json에 등록합니다. 변경 파일을 커밋·배포하면 다음 방문의 기본 데이터가 됩니다. 병합 규칙 테스트는 `npm run test:sync`로 실행합니다.
