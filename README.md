@@ -97,3 +97,23 @@ JSON 항목을 복사하여 추가하고 쉼표/따옴표를 유지하세요. �
 `.github/workflows/deploy.yml`은 `main` 브랜치 push 또는 수동 실행 시 사이트를 빌드하고 배포합니다. Settings → Pages → Source는 GitHub Actions를 사용합니다. 배포 경로는 Pages 설정에서 자동으로 가져옵니다. 로컬에서는 계속 `npm run dev`를 사용합니다.
 
 예정 주소: https://kjyoung.github.io/RobexTemp/
+
+## Google Sheets → People 동기화
+
+원본: https://docs.google.com/spreadsheets/d/1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA/edit
+
+`People` 탭의 첫 행은 필드명, 두 번째 행부터 한 사람씩 입력합니다. `name`으로 매칭하며 앞뒤 공백과 대소문자는 무시합니다. `id`는 이름 매칭 키가 아닌 개인 페이지 주소입니다.
+
+- 값이 있는 셀만 기존 `src/content/people.json`에 덮어씁니다. 빈 셀은 현재 JSON 값을 유지합니다.
+- 시트에서 빠진 구성원은 유지합니다. 새 이름은 오타로 잘못 연결하지 않도록 오류로 처리합니다. 새 구성원은 먼저 JSON에 추가하세요.
+- `topics`: 쉼표로 구분하거나 JSON 배열을 사용합니다. 새 태그는 `topics.json`에도 등록됩니다.
+- `fullBio`: 여러 줄 문장과 Markdown을 지원합니다.
+- `res-1-title`, `res-1-desc`, `res-1-url`: 첫 번째 연구 항목의 제목·설명·링크입니다. 숫자를 늘려 추가할 수 있습니다. 빈 셀은 해당 항목의 기존 필드를 유지합니다.
+- `researches` 전체를 JSON 배열로 입력할 수도 있습니다.
+- 이메일의 @와 .는 저장 시 (at), (dot)으로 변환됩니다. 테스트 숫자도 비어 있지 않으면 반영됩니다.
+
+`npm run sync:people`로 즉시 동기화합니다. `npm run dev`와 `npm run build`도 시작 전에 자동 동기화합니다. 서버 실행 중 시트를 수정했다면 `npm run sync:people`을 다시 실행하세요. 네트워크 없이 기존 데이터만 쓰려면 `SKIP_PEOPLE_SYNC=1 npm run dev` 또는 `SKIP_PEOPLE_SYNC=1 npm run build`를 사용하세요.
+
+GitHub Actions의 기존 Build 단계도 동일한 동기화를 실행합니다. 시트만 수정한 경우 Actions → Deploy RobEx to GitHub Pages → Run workflow로 재배포하세요. 자동 주기 실행은 설정하지 않았습니다.
+
+시트는 GitHub Actions에서 로그인 없이 읽을 수 있어야 합니다. 다운로드·검증 실패 시 기존 people.json을 보존하고 빌드를 중단하여 기존 배포를 유지합니다. 빈 셀은 Git의 최초 값으로 복원하는 기능이 아니라, 실행 시점의 JSON 값을 유지하는 의미입니다.

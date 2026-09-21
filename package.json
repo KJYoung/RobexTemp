@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "sync:people": "node scripts/sync-people.mjs",
+    "predev": "npm run sync:people",
+    "prebuild": "npm run sync:people",
+    "test:sync": "node --test scripts/people-sheet.test.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
