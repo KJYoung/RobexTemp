@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Markdown from "react-markdown";
 import { PeopleDirectory, PersonProfile } from "./components/People";
+import { useSheet } from "./hooks/useSheet";
+import { mergeNews, sortNews, type News } from "../scripts/content-sheets.mjs";
 import { usePeople } from "./hooks/usePeople";
 import research from "./content/research.json";
-import news from "./content/news.json";
+import newsData from "./content/news.json";
 import publicationData from "./content/publications.json";
 import about from "./content/about.md?raw";
 import "./styles.css";
@@ -46,7 +48,9 @@ function Logo() {
     </span>
   );
 }
+const initialNews = sortNews(newsData);
 function App() {
+  const news = useSheet<News[]>("News", initialNews, mergeNews);
   const { allPeople, topics } = usePeople();
   const [page, setPage] = useState<Page>(getPage);
   const [menu, setMenu] = useState(false);
@@ -160,6 +164,17 @@ function App() {
                 </figcaption>
               </figure>
             </section>
+            <section className="shell home-news">
+              <div className="section-heading">
+                <div>
+                  <h2>Latest news</h2>
+                </div>
+                <a className="text-link" href="#news">
+                  All news <Arrow />
+                </a>
+              </div>
+              <NewsRows news={news.slice(0, 3)} compact />
+            </section>
             <section className="shell intro section">
               <p className="eyebrow">OUR LAB</p>
               <div>
@@ -186,27 +201,6 @@ function App() {
                 </div>
                 <ResearchCards />
               </div>
-            </section>
-            <section className="shell section">
-              <div className="section-heading">
-                <div>
-                  <p className="eyebrow">FROM THE LAB</p>
-                  <h2>Highlights</h2>
-                </div>
-                <a className="text-link" href="#news">
-                  All news <Arrow />
-                </a>
-              </div>
-              {news.map((n) => (
-                <a className="news-row" href={n.url} key={n.title}>
-                  <span className="news-date">{n.date}</span>
-                  <div>
-                    <h3>{n.title}</h3>
-                    <p>{n.text}</p>
-                  </div>
-                  <Arrow />
-                </a>
-              ))}
             </section>
           </>
         )}
@@ -327,16 +321,7 @@ function App() {
               <p>Updates and highlights from RobEx.</p>
             </section>
             <section className="shell news-page">
-              {news.map((n) => (
-                <a className="news-row" href={n.url} key={n.title}>
-                  <span className="news-date">{n.date}</span>
-                  <div>
-                    <h2>{n.title}</h2>
-                    <p>{n.text}</p>
-                  </div>
-                  <Arrow />
-                </a>
-              ))}
+              <NewsRows news={news} />
             </section>
           </>
         )}
@@ -491,3 +476,51 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </React.StrictMode>,
 );
+
+function NewsRows({
+  news,
+  compact = false,
+}: {
+  news: News[];
+  compact?: boolean;
+}) {
+  return (
+    <>
+      {news.map((n) => {
+        const content = (
+          <>
+            <span className="news-date">{n.date}</span>
+            <div>
+              {!compact && n.type && (
+                <span className="news-type">{n.type}</span>
+              )}
+              <h3>{n.title}</h3>
+              {compact ? (
+                n.tldr && <p className="news-tldr">{n.tldr}</p>
+              ) : (
+                <p>{n.text}</p>
+              )}
+            </div>
+            {n.url && <Arrow />}
+          </>
+        );
+        return n.url ? (
+          <a
+            className={compact ? "news-row news-row-compact" : "news-row"}
+            href={n.url}
+            key={n.id}
+          >
+            {content}
+          </a>
+        ) : (
+          <article
+            className={compact ? "news-row news-row-compact" : "news-row"}
+            key={n.id}
+          >
+            {content}
+          </article>
+        );
+      })}
+    </>
+  );
+}

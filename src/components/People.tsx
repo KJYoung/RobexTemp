@@ -139,9 +139,7 @@ export function PeopleDirectory({
                           <TopicTags ids={p.topics} topics={topics} />
                         )}
                         {p.email && <span className="email">{p.email}</span>}
-                        <a className="text-link" href={p.url}>
-                          Website <span aria-hidden="true">↗</span>
-                        </a>
+                        <PersonLinks person={p} />
                       </div>
                     </article>
                   ),
@@ -191,9 +189,7 @@ export function PersonProfile({
           {person.note && <p className="note">{person.note}</p>}
           {person.destination && <p>{person.destination}</p>}
           {person.email && <span className="email">{person.email}</span>}
-          <a className="text-link" href={person.url}>
-            Website <span aria-hidden="true">↗</span>
-          </a>
+          <PersonLinks person={person} />
         </aside>
         <div>
           <h1 className="profile-title">{person.name}</h1>
@@ -205,27 +201,77 @@ export function PersonProfile({
               </div>
             </section>
           )}
-          <section className="profile-section">
-            <h2>Full Bios</h2>
-            <div className="profile-content prose">
-              {person.fullBio && <Markdown>{person.fullBio}</Markdown>}
-            </div>
-          </section>
-          <section className="profile-section">
-            <h2>Researches</h2>
-            <div className="profile-content">
-              {person.researches.map((r) => (
-                <article key={r.title} className="profile-research">
-                  <h3>{r.url ? <a href={r.url}>{r.title} ↗</a> : r.title}</h3>
-                  <div className="prose">
-                    <Markdown>{r.description}</Markdown>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+          {person.group !== "Lab Alumni" && (
+            <>
+              <section className="profile-section">
+                <h2>Full Bios</h2>
+                <div className="profile-content prose">
+                  {person.fullBio && <Markdown>{person.fullBio}</Markdown>}
+                </div>
+              </section>
+              <section className="profile-section">
+                <h2>Researches</h2>
+                <div className="profile-content">
+                  {person.researches.map((r) => (
+                    <article key={r.title} className="profile-research">
+                      <h3>
+                        {r.url ? <a href={r.url}>{r.title} ↗</a> : r.title}
+                      </h3>
+                      <div className="prose">
+                        <Markdown>{r.description}</Markdown>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
         </div>
       </div>
     </section>
+  );
+}
+
+function PersonLinks({ person }: { person: Person }) {
+  const linkedin =
+    person.linkedin ||
+    (person.url?.includes("linkedin.com/") ? person.url : "");
+  const homepage =
+    person.homepage ||
+    (person.url && !person.url.includes("linkedin.com/") ? person.url : "");
+  if (!linkedin && !homepage) return null;
+  return (
+    <div className="person-links">
+      {linkedin && (
+        <a
+          href={linkedin}
+          aria-label={`${person.name} on LinkedIn`}
+          title="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+            <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8V14.1c0-1.11-.02-2.53-1.54-2.53-1.54 0-1.77 1.2-1.77 2.45v4.73H9.54V9.2h2.83v1.3h.04c.39-.74 1.36-1.53 2.79-1.53 2.98 0 3.55 1.96 3.55 4.51v5.27Z" />
+          </svg>
+        </a>
+      )}
+      {homepage && (
+        <a
+          href={homepage}
+          aria-label={`${person.name} website`}
+          title="Homepage"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <ellipse cx="12" cy="12" rx="4" ry="9" />
+            <path d="M3 12h18M5 6.5h14M5 17.5h14" />
+          </svg>
+        </a>
+      )}
+    </div>
   );
 }

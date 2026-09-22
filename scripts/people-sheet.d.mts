@@ -6,7 +6,9 @@ export type Person = {
   group: string;
   image?: string;
   email?: string;
-  url: string;
+  url?: string; // Legacy Alumni field
+  linkedin?: string;
+  homepage?: string;
   note?: string;
   destination?: string;
   topics: string[];
@@ -22,3 +24,5 @@ export function mergePeople(
   matched: number;
   changes: string[];
 };
+
+export function sheetText(value: string): string;

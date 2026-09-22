@@ -1,3 +1,7 @@
+// Decode spreadsheet text only; leave URLs, IDs and serialized JSON intact.
+export function sheetText(value) {
+  return value.replace(/\\r\\n|\\n/g, "\n");
+}
 export function parseCSV(text) {
   const rows = [];
   let row = [],
@@ -40,7 +44,9 @@ const fields = new Set([
   "group",
   "role",
   "email",
-  "url",
+  "url", // Accept old sheet headers during migration.
+  "linkedin",
+  "homepage",
   "image",
   "note",
   "id",
@@ -98,9 +104,18 @@ export function mergePeople(existing, csv) {
         `Unknown name: ${data.name}. Add a local person first or correct the sheet name.`,
       );
     matched++;
-    for (const [field, value] of Object.entries(data)) {
+    for (const [column, value] of Object.entries(data)) {
+      const field =
+        column === "url"
+          ? /^https?:\/\/([a-z0-9-]+\.)*linkedin\.com\//i.test(value)
+            ? "linkedin"
+            : "homepage"
+          : column;
+      if (column === "url" && data[field]) continue;
       if (!value || field === "name" || field.startsWith("res-")) continue;
-      let next = value;
+      let next = ["role", "group", "note", "fullBio"].includes(field)
+        ? sheetText(value)
+        : value;
       if (field === "topics") {
         next = list(value, field);
         if (next.some((x) => typeof x !== "string" || !x.trim()))
@@ -119,9 +134,18 @@ export function mergePeople(existing, csv) {
         )
           throw new Error("Each research needs title and description");
       }
+      if (field === "researches")
+        next = next.map((r) => ({
+          ...r,
+          title: sheetText(r.title),
+          description: sheetText(r.description),
+        }));
       if (field === "email")
         next = value.replace(/@/g, " (at) ").replace(/\./g, " (dot) ");
-      if (field === "url" && !/^https?:\/\//i.test(value))
+      if (
+        ["linkedin", "homepage"].includes(field) &&
+        !/^https?:\/\//i.test(value)
+      )
         throw new Error(`Invalid website URL for ${p.name}`);
       if (field === "id" && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value))
         throw new Error(`Invalid profile id for ${p.name}`);
@@ -138,7 +162,8 @@ export function mergePeople(existing, csv) {
       if (i > 100) throw new Error("Research index exceeds 101");
       p.researches ??= [];
       p.researches[i] ??= { title: "", description: "" };
-      p.researches[i][m[2] === "desc" ? "description" : m[2]] = value;
+      p.researches[i][m[2] === "desc" ? "description" : m[2]] =
+        m[2] === "url" ? value : sheetText(value);
     }
     if (Array.from(p.researches).some((r) => !r || !r.title))
       throw new Error(

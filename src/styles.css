@@ -211,7 +211,6 @@ main:focus {
 .intro {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  border-top: 1px solid #dce3e8;
   gap: 40px;
 }
 .intro > div {
@@ -1251,4 +1250,124 @@ footer {
   .people-toolbar .clear-filter {
     align-self: center;
   }
+}
+
+/* Compact homepage updates and quiet news categories. */
+.home-news {
+  padding-top: 36px;
+  padding-bottom: 24px;
+}
+.home-news .section-heading {
+  margin-bottom: 16px;
+  align-items: center;
+}
+.home-news h2 {
+  font-size: 25px;
+}
+.news-row.news-row-compact {
+  min-height: 58px;
+  padding: 16px 0;
+  align-items: center;
+  border-top-color: #e5eaee;
+}
+.home-news .news-row-compact:last-child {
+  border-bottom: 1px solid #e5eaee;
+}
+.news-row-compact .news-date {
+  padding-top: 0;
+  line-height: 1.5;
+}
+.news-row.news-row-compact h3 {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+}
+.news-type {
+  display: inline-block;
+  margin-bottom: 9px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: #edf3f5;
+  color: #4e6874;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+a.news-row:hover h3 {
+  text-decoration: underline;
+}
+article.news-row:hover h3 {
+  text-decoration: none;
+}
+.person-links {
+  display: flex;
+  gap: 6px;
+  margin-top: 7px;
+}
+.person-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #31566e;
+  border-radius: 6px;
+}
+.person-links a:hover {
+  color: #0079a1;
+  background: #edf4f6;
+}
+.person-links a:focus-visible {
+  outline: 2px solid #0079a1;
+  outline-offset: 2px;
+}
+.person-links svg {
+  width: 21px;
+  height: 21px;
+}
+@media (max-width: 600px) {
+  .home-news {
+    padding-top: 24px;
+  }
+  .news-row.news-row-compact {
+    grid-template-columns: 70px 1fr 18px;
+    gap: 10px;
+  }
+  .news-row.news-row-compact h3 {
+    font-size: 15px;
+  }
+  .news-row-compact .news-date {
+    font-size: 12px;
+  }
+}
+
+/* Preserve both actual cell line breaks and decoded literal \n text. */
+.news-row h3,
+.news-row p,
+.news-date,
+.news-type,
+.person .role,
+.person .note,
+.person h3,
+.people-group > h2,
+.alumni-row,
+.profile-page .role,
+.profile-page .note,
+.profile-page aside > p,
+.profile-title,
+.profile-research h3,
+.profile-content.prose,
+.profile-research .prose {
+  white-space: pre-line;
+}
+.profile-page pre {
+  white-space: pre;
+}
+
+.news-row-compact .news-tldr {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #667381;
 }

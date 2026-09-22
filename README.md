@@ -119,3 +119,22 @@ Sheet는 방문자의 브라우저에서 로그인 없이 읽을 수 있어야 �
 `npm run dev`와 `npm run build`는 Sheet 다운로드 없이 실행됩니다. localhost와 GitHub Pages 모두 브라우저에서 같은 방식으로 갱신됩니다. 브라우저는 저장소의 JSON 파일을 수정하지 않습니다.
 
 JSON 자체에 최신 값을 저장하고 싶을 때만 `npm run sync:people`을 실행하세요. 이 명령은 기존처럼 people.json을 덮어쓰고 새 topics를 topics.json에 등록합니다. 변경 파일을 커밋·배포하면 다음 방문의 기본 데이터가 됩니다. 병합 규칙 테스트는 `npm run test:sync`로 실행합니다.
+
+## Alumni / News 실시간 갱신
+
+People과 동일하게 Alumni와 News도 브라우저에서 30초마다 독립적으로 갱신됩니다. 한 시트의 실패가 다른 시트의 갱신을 막지 않습니다.
+
+- Alumni: `name,destination,url,image,note,id,topics`. name으로 매칭하고 빈 셀은 현재 값을 유지합니다. 새 구성원은 고유 id와 name을 입력하면 추가됩니다. fullBio/researches는 alumni.json에서 제거했으며 졸업생 프로필에도 표시하지 않습니다.
+- News: `id,date,type,title,text,url (optional)`. JSON에서는 마지막 필드를 `url`로 저장하며 생략할 수 있습니다. id는 문자열 고유 키이며, 기존 id의 빈 셀은 현재 값을 유지합니다. 제목이 없는 준비용 행은 숨깁니다. 성공적으로 읽으면 시트의 목록을 ID 내림차순으로 정렬하므로 시트에서 제거한 뉴스는 화면에서도 사라집니다. 링크가 없는 항목은 클릭되지 않는 카드로 표시합니다. type은 각 소식 위에 표시합니다.
+- 최초 화면/연결 실패 시에는 로컬 JSON을 기본값으로 사용합니다. 기존 기본값에 url이 있으면 Sheet의 빈 url은 그 링크를 유지합니다.
+- `npm run sync:people` 수동 파일 저장 명령은 People에만 적용됩니다. Alumni/News는 화면에서만 갱신됩니다.
+
+People 링크는 `linkedin`, `homepage`로 관리합니다. 값이 있는 링크만 각각 LinkedIn/지구본 아이콘으로 표시하며 목록과 개인 프로필에 동일하게 적용됩니다. 기존 `url` Sheet 열은 주소에 따라 두 필드 중 하나로 읽되, 명시한 새 열을 우선합니다. Alumni의 url 형식은 유지됩니다. Home의 Latest news는 ID 내림차순의 첫 3개를 날짜와 제목만 표시합니다.
+
+News의 date는 날짜 파싱/포맷 변환 없이 CSV 텍스트로 표시합니다 (예: Spring 2026). 정렬은 date와 무관하게 ID 내림차순이며 숫자 ID 10은 9보다 먼저 나옵니다.
+
+News는 숫자 연도와 계절 텍스트가 섞여 있어도 값이 누락되지 않도록 gviz 쿼리 대신 CSV export(gid=874971636)를 사용합니다. News 탭을 삭제 후 새로 만들면 useSheet.ts의 gid도 갱신해야 합니다.
+
+시트의 표시용 텍스트에 입력한 문자 `\n`은 실제 줄바꿈으로 표시됩니다. 셀 안의 실제 줄바꿈도 유지됩니다. News 본문/제목/날짜, People 소개/연구/직책/비고, Alumni 소속/비고에 적용하며 URL과 ID는 변환하지 않습니다.
+
+News의 선택 필드 `tldr`는 Home에서 제목 아래 짧은 설명으로 표시합니다. 비어 있으면 설명을 생략합니다. News 탭에서는 기존 title과 text를 표시합니다. tldr도 문자 `\n` 줄바꿈과 빈 셀의 기존 값 유지 규칙을 지원합니다.

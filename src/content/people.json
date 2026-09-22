@@ -4,7 +4,6 @@
     "group": "Principal Investigator",
     "role": "Assistant Professor",
     "email": "apapalia (at) umich (dot) edu",
-    "url": "https://alanpapalia.github.io/",
     "image": "people/alan-papalia.png",
     "note": "",
     "id": "alan-papalia",
@@ -15,14 +14,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "",
+    "homepage": "https://alanpapalia.github.io/"
   },
   {
     "name": "Minghan Zhu",
     "group": "Research Scientists & Postdocs",
     "role": "Research Scientist",
     "email": "minghanz (at) umich (dot) edu",
-    "url": "https://minghanz.github.io/",
     "image": "people/minghan-zhu.png",
     "note": "",
     "id": "minghan-zhu",
@@ -33,14 +33,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "",
+    "homepage": "https://minghanz.github.io/"
   },
   {
     "name": "Laura Sopegno",
     "group": "Research Scientists & Postdocs",
     "role": "Postdoc",
     "email": "sopegno (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/laura-sopegno-phd-89767276/?locale=en",
     "image": "people/laura-sopegno.png",
     "note": "Co-advised with Prof. Maha Haji",
     "id": "laura-sopegno",
@@ -51,14 +52,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/laura-sopegno-phd-89767276/?locale=en",
+    "homepage": ""
   },
   {
     "name": "Raymond Young",
     "group": "Research Scientists & Postdocs",
     "role": "Postdoc",
     "email": "rayyoung (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/-rayyoung-/",
     "image": "people/raymond-young.png",
     "note": "Co-advised with Prof. Brian Arbic",
     "id": "raymond-young",
@@ -69,14 +71,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/-rayyoung-/",
+    "homepage": ""
   },
   {
     "name": "Shayesteh Hafezi",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
     "email": "shafezi (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/shayesteh-hafezi-ba974b17b/",
     "image": "people/shayesteh-hafezi.png",
     "note": "",
     "id": "shayesteh-hafezi",
@@ -87,14 +90,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/shayesteh-hafezi-ba974b17b/",
+    "homepage": ""
   },
   {
     "name": "Tim Lazouski",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
     "email": "tlazousk (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/tlazouski/",
     "image": "people/tim-lazouski.png",
     "note": "Co-advised with Prof. Maani Ghaffari",
     "id": "tim-lazouski",
@@ -105,14 +109,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/tlazouski/",
+    "homepage": ""
   },
   {
     "name": "Junyoung Kim",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
     "email": "jyoungk (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/kim-junyoung/",
     "image": "people/junyoung-kim.png",
     "note": "",
     "id": "junyoung-kim",
@@ -123,14 +128,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/kim-junyoung/",
+    "homepage": "https://kjyoung.github.io/Homepage/"
   },
   {
     "name": "Cole Malinchock",
     "group": "PhD Students",
     "role": "PhD Student, NAME",
     "email": "chmalinc (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/cole-malinchock/",
     "image": "people/cole-malinchock.png",
     "note": "",
     "id": "cole-malinchock",
@@ -141,14 +147,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/cole-malinchock/",
+    "homepage": ""
   },
   {
     "name": "Zhiyi Wang",
     "group": "MS Students",
     "role": "MS Student",
     "email": "jerrywzy (at) umich (dot) edu",
-    "url": "https://scholar.google.com/citations?user=WaH0rCEAAAAJ&hl=en",
     "image": "people/zhiyi-wang.jpg",
     "note": "",
     "id": "zhiyi-wang",
@@ -159,14 +166,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "",
+    "homepage": "https://scholar.google.com/citations?user=WaH0rCEAAAAJ&hl=en"
   },
   {
     "name": "Devin Jones",
     "group": "MS Students",
     "role": "MS Student",
     "email": "jdevin (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/devin-jones-a05bb8290",
     "image": "people/devin-jones.png",
     "note": "",
     "id": "devin-jones",
@@ -177,14 +185,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/devin-jones-a05bb8290",
+    "homepage": ""
   },
   {
     "name": "Cody Sheltraw",
     "group": "MS Students",
     "role": "MS Student",
     "email": "cshel (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/cody-sheltraw",
     "image": "people/cody-sheltraw.jpg",
     "note": "",
     "id": "cody-sheltraw",
@@ -195,14 +204,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/cody-sheltraw",
+    "homepage": ""
   },
   {
     "name": "Nicolas Betancur",
     "group": "MS Students",
     "role": "MS Student",
     "email": "betancur (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/nico-betancur/",
     "image": "people/nicolas-betancur.jpg",
     "note": "",
     "id": "nicolas-betancur",
@@ -213,14 +223,15 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/nico-betancur/",
+    "homepage": ""
   },
   {
     "name": "Nik Sanderson",
     "group": "Undergraduates",
     "role": "Undergraduate Researcher",
     "email": "nikrsan (at) umich (dot) edu",
-    "url": "https://www.linkedin.com/in/niksand/",
     "image": "people/nik-sanderson.png",
     "note": "",
     "id": "nik-sanderson",
@@ -231,6 +242,8 @@
         "title": "Sample research project",
         "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
       }
-    ]
+    ],
+    "linkedin": "https://www.linkedin.com/in/niksand/",
+    "homepage": ""
   }
 ]

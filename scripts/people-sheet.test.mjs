@@ -60,3 +60,31 @@ test("invalid sheets fail before writing", () => {
   ])
     assert.throws(() => mergePeople(base, csv));
 });
+
+test("person links support separate fields and legacy url without overriding explicit fields", () => {
+  const csv =
+    "name,url,linkedin,homepage\nJane Doe,https://www.linkedin.com/in/old,https://www.linkedin.com/in/new,https://example.com";
+  const person = mergePeople(base, csv).people[0];
+  assert.equal(person.linkedin, "https://www.linkedin.com/in/new");
+  assert.equal(person.homepage, "https://example.com");
+  assert.equal(person.url, undefined);
+  assert.equal(
+    mergePeople(base, "name,url\nJane Doe,https://example.com").people[0]
+      .homepage,
+    "https://example.com",
+  );
+  assert.throws(() =>
+    mergePeople(base, "name,homepage\nJane Doe,javascript:alert(1)"),
+  );
+});
+
+test("literal line breaks work in profile and numbered research fields", () => {
+  const result = mergePeople(
+    base,
+    String.raw`name,fullBio,note,res-1-desc
+Jane Doe,First\nSecond,One\nTwo,Goal\nResult`,
+  ).people[0];
+  assert.equal(result.fullBio, "First\nSecond");
+  assert.equal(result.note, "One\nTwo");
+  assert.equal(result.researches[0].description, "Goal\nResult");
+});
