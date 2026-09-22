@@ -88,3 +88,15 @@ Jane Doe,First\nSecond,One\nTwo,Goal\nResult`,
   assert.equal(result.note, "One\nTwo");
   assert.equal(result.researches[0].description, "Goal\nResult");
 });
+
+test("unknown name-only placeholders do not block actual topic updates", () => {
+  const result = mergePeople(
+    base,
+    "name,topics\nJane Doe,Semantics\nFormer Member,",
+  );
+  assert.deepEqual(result.people[0].topics, ["Semantics"]);
+  assert.equal(result.people.length, 1);
+  assert.throws(() =>
+    mergePeople(base, "name,topics\nJane Doe,Semantics\nFormer Member,Mapping"),
+  );
+});

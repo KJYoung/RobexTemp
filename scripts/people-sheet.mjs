@@ -99,6 +99,12 @@ export function mergePeople(existing, csv) {
     if (seen.has(id)) throw new Error(`Duplicate sheet name: ${data.name}`);
     seen.add(id);
     const p = index.get(id);
+    // A name-only row has no overrides, including alumni listed as placeholders.
+    if (
+      !p &&
+      Object.entries(data).every(([field, value]) => field === "name" || !value)
+    )
+      continue;
     if (!p)
       throw new Error(
         `Unknown name: ${data.name}. Add a local person first or correct the sheet name.`,

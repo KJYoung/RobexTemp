@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-const SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA/gviz/tq?tqx=out:csv&sheet=";
-// CSV export preserves mixed numeric/text dates that the typed gviz query omits.
-const NEWS_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA/export?format=csv&gid=874971636";
+// Raw CSV avoids gviz header and column-type inference.
+const SHEET_IDS: Record<string, string> = {
+  People: "0",
+  Alumni: "825492908",
+  News: "874971636",
+};
+const SHEET_EXPORT =
+  "https://docs.google.com/spreadsheets/d/1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA/export?format=csv&gid=";
 const REFRESH_MS = 30_000;
 export function useSheet<T>(
   sheet: string,
@@ -23,7 +26,7 @@ export function useSheet<T>(
       const timeout = window.setTimeout(() => controller?.abort(), 15_000);
       try {
         const response = await fetch(
-          `${sheet === "News" ? NEWS_CSV_URL : SHEET_URL + encodeURIComponent(sheet)}&_=${Date.now()}`,
+          `${SHEET_EXPORT}${SHEET_IDS[sheet]}&_=${Date.now()}`,
           {
             signal: controller.signal,
             cache: "no-store",

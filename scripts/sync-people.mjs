@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import { mergePeople } from "./people-sheet.mjs";
 const root = new URL("../", import.meta.url);
 const sheetId = "1Ji6d41RBSASJ6CPgB0OV_-XoevKH5qxCY_Xt_5u2tbA";
-const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=People`;
+const url = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
 const target = new URL("src/content/people.json", root);
 try {
   if (process.env.SKIP_PEOPLE_SYNC === "1") {
