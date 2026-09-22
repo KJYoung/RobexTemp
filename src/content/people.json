@@ -198,6 +198,24 @@
     ]
   },
   {
+    "name": "Nicolas Betancur",
+    "group": "MS Students",
+    "role": "MS Student",
+    "email": "betancur (at) umich (dot) edu",
+    "url": "https://www.linkedin.com/in/nico-betancur/",
+    "image": "people/nicolas-betancur.jpg",
+    "note": "",
+    "id": "nicolas-betancur",
+    "topics": ["topic-2"],
+    "fullBio": "Temporary biography for Nicolas Betancur. This sample text previews the layout; a full biography will be added here.",
+    "researches": [
+      {
+        "title": "Sample research project",
+        "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
+      }
+    ]
+  },
+  {
     "name": "Nik Sanderson",
     "group": "Undergraduates",
     "role": "Undergraduate Researcher",
