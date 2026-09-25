@@ -228,6 +228,25 @@
     "homepage": ""
   },
   {
+    "name": "Arnav Devalapally",
+    "group": "MS Students",
+    "role": "MS Student",
+    "email": "darnav (at) umich (dot) edu",
+    "image": "people/arnav-devalapally.jpeg",
+    "note": "",
+    "id": "arnav-devalapally",
+    "topics": ["topic-2"],
+    "fullBio": "Temporary biography for Arnav Devalapally. This sample text previews the layout; a full biography will be added here.",
+    "researches": [
+      {
+        "title": "Sample research project",
+        "description": "Temporary project summary for the profile preview. Research goals and results will be added here."
+      }
+    ],
+    "linkedin": "https://www.linkedin.com/in/darnav/",
+    "homepage": ""
+  },
+  {
     "name": "Nik Sanderson",
     "group": "Undergraduates",
     "role": "Undergraduate Researcher",
